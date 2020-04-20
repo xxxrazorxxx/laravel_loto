@@ -6,6 +6,7 @@ namespace App\Core;
 
 use App\Client;
 use App\Game;
+use Facade\Ignition\Support\Packagist\Package;
 
 class GameGenerator
 {
@@ -90,8 +91,12 @@ class GameGenerator
      */
     public function checkTickets($number)
     {
+        $ticket_checker = new TicketChecker();
         $tickets = $this->game->tickets;
 
+        foreach ($tickets as $ticket) {
+            $ticket_checker->checkTicket($ticket);
+        }
     }
 
     /**
