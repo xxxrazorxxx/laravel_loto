@@ -12,6 +12,16 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'game_id', 'ticket_data', 'prize'
+        'ticket_data', 'prize', 'ticket_hash', 'name', 'surname'
     ];
+
+    /**
+     * Gets decoded ticket data
+     *
+     * @return array
+     */
+    public function getTicketData()
+    {
+        return json_decode($this->ticket_data);
+    }
 }

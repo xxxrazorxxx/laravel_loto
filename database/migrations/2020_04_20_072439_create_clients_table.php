@@ -15,8 +15,11 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id')->default(0);
+            $table->integer('game_number')->default(0);
             $table->binary('ticket_data');
+            $table->string('ticket_hash');
+            $table->string('name');
+            $table->string('surname');
             $table->integer('prize')->default(0);
             $table->timestamps();
         });

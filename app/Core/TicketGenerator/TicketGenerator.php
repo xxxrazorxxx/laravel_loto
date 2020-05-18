@@ -4,15 +4,33 @@
 namespace App\Core\TicketGenerator;
 
 
+/**
+ * Class TicketGenerator
+ *
+ * @package App\Core\TicketGenerator
+ */
 class TicketGenerator
 {
+    /** @var int */
     private $fields_num = 2;
+
+    /** @var int  */
     private $rows_num = 3;
+
+    /** @var int  */
     private $row_column_num = 9;
+
+    /** @var int  */
     private $filled_columns_in_row_num = 5;
 
+    /** @var array  */
     private $used_numbers = [];
 
+    /**
+     * Generates ticket
+     *
+     * @return array
+     */
     public function generateTicket()
     {
         $data = [];
@@ -21,6 +39,11 @@ class TicketGenerator
         return $data;
     }
 
+    /**
+     * Generates ticket fields
+     *
+     * @return array
+     */
     private function generateFields()
     {
         $fields = [];
@@ -32,6 +55,11 @@ class TicketGenerator
         return $fields;
     }
 
+    /**
+     * Generates field rows
+     *
+     * @return array
+     */
     private function generateRows()
     {
         $rows = [];
@@ -43,6 +71,11 @@ class TicketGenerator
         return $rows;
     }
 
+    /**
+     * Generate field row
+     *
+     * @return array
+     */
     private function generateRow()
     {
         $filled_columns = $this->getRandomColumns();
@@ -50,10 +83,20 @@ class TicketGenerator
 
         foreach ($filled_columns as $column) {
             while(empty($row_data[$column])) {
-                $number = ($column * 10) + rand(1, 9);
+                if ($column === 0) {
+                    $rand_number = rand(1, 9);
+                } elseif ($column === $this->row_column_num - 1) {
+                    $rand_number = rand(0, 10);
+                } else {
+                    $rand_number = rand(0, 9);
+                }
+
+                $number = ($column * 10) + $rand_number;
+
                 if (in_array($number, $this->used_numbers)) {
                     continue;
                 }
+
                 $this->used_numbers[] = $number;
                 $row_data[$column] = $number;
             }
@@ -62,6 +105,11 @@ class TicketGenerator
         return $row_data;
     }
 
+    /**
+     * Generates random columns
+     *
+     * @return array
+     */
     private function getRandomColumns()
     {
         $columns = [];

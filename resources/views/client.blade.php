@@ -5,7 +5,8 @@
     <title>Laravel</title>
 </head>
 <body>
-    <p>Your ticket number is {{$client_number}}, and you take part in the {{$game_id}} game tour.</p>
+    <p>Hello, {{ $name }} {{ $surname }}</p>
+    <p>Your ticket number is {{$client_number}}, and you take part in the {{ $game_number }} game tour.</p>
     <p>You can check the result on the following page: <a href="{{url('/client/' . $client_number)}}">{{url('/client/' . $client_number)}}</a></p>
     <p>This is your ticket:</p>
     @foreach ($ticket_data['fields'] as $field)

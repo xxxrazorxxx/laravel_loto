@@ -6,7 +6,7 @@
     </head>
     <body>
         <p>
-            The {{$game_tour}}
+            The {{$game_number}}
             @if ($is_game_ended)
                 was ended
             @else
@@ -14,6 +14,7 @@
             @endif
         </p>
         <p>Bank: {{$bank}}</p>
+        <p>Bank left: {{$bank_left}}</p>
         <p>
             @if ($is_game_ended)
                 Last number
